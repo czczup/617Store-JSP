@@ -39,31 +39,4 @@ public class HandleAddCart extends HttpServlet {
 
     }
 
-    private boolean check(String username,String password) {
-        Connection con;
-        PreparedStatement sql;
-        ResultSet rs;
-        String url = "jdbc:mysql://120.79.162.134:3306/617Store?useSSL=false&useUnicode=true&characterEncoding=utf8";
-        try{
-            con = DriverManager.getConnection(url,"root","abcphotovalley");
-            sql = con.prepareStatement("SELECT * FROM user WHERE username=?;");
-            sql.setString(1,username);
-            rs = sql.executeQuery();
-            while (rs.next()) {
-                queryPassword = rs.getString("password");
-                user.setUsername(username);
-                user.setId(rs.getInt("id"));
-            }
-            con.close();
-            /* 判断加密后的密码与数据库中存储的密码是否相同 */
-            if ((new Hasher()).checkPassword(password,queryPassword)) {
-                return true;
-            } else {
-                return false;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
 }
