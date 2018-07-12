@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" build-on-make="true" name="617Store:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/617Store_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="617Store/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="617Store" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

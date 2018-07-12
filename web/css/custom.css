@@ -1,0 +1,22 @@
+.ps-product__category {
+    margin-top: 5px;
+}
+
+
+.tp-caption.ps-banner__description {
+    margin-top: 40px;
+}
+
+.tp-caption.ps-btn {
+    margin-top: 80px;
+}
+
+.br-theme-fontawesome-stars .br-widget > a {
+    font-size: 20px !important;
+    color: #ffb727;
+}
+
+.ps-product--detail .ps-product__content .tab-list li {
+    display: inline-block;
+    margin: 0 70px 0;
+}

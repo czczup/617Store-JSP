@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 2.6//EN"
+        "http://tuckey.org/res/dtds/urlrewrite2.6.dtd">
+<urlrewrite>
+    <rule>
+        <from>/product-detail.html</from>
+        <to>/product-detail.jsp</to>
+    </rule>
+    <rule>
+        <from>/product-listing.html</from>
+        <to>/product-listing.jsp</to>
+    </rule>
+    <rule>
+        <from>/product-collection.html</from>
+        <to>/product-collection.jsp</to>
+    </rule>
+    <rule>
+        <from>/collection.html</from>
+        <to>/api/collection</to>
+    </rule>
+    <rule>
+        <from>/login.html</from>
+        <to>/login.jsp</to>
+    </rule>
+    <rule>
+        <from>/forgot.html</from>
+        <to>/forgot.jsp</to>
+    </rule>
+    <rule>
+        <from>/register.html</from>
+        <to>/register.jsp</to>
+    </rule>
+    <rule>
+        <from>/detail/(.*).html</from>
+        <to>/api/detail?id=$1</to>
+    </rule>
+    <rule>
+        <from>/list.html</from>
+        <to>/api/commodities</to>
+    </rule>
+    <rule>
+        <from>/list/(.*).html</from>
+        <to>/api/commodities?page=$1</to>
+    </rule>
+    <rule>
+        <from>/404.html</from>
+        <to>/404.jsp</to>
+    </rule>
+    <rule>
+        <from>/index.html</from>
+        <to>/api/index</to>
+    </rule>
+    <rule>
+        <from>/store-index.html</from>
+        <to>/store-index.jsp</to>
+    </rule>
+</urlrewrite>
