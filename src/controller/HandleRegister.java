@@ -10,10 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 @WebServlet(name = "HandleRegister", urlPatterns = "/api/register")
 public class HandleRegister extends HttpServlet {
@@ -51,8 +48,13 @@ public class HandleRegister extends HttpServlet {
                 sql.setString(1, userName);
                 sql.setString(2, password);
                 sql.setString(3, email);
-                int m = sql.executeUpdate();
-                if (m != 0) {
+                if(sql.executeUpdate() != 0) {
+                    sql = con.prepareStatement("SELECT id FROM user WHERE username=?");
+                    sql.setString(1,userName);
+                    ResultSet rs = sql.executeQuery();
+                    while (rs.next()) {
+                        user.setId(rs.getInt("id"));
+                    }
                     user.setUsername(userName);
                     session.setAttribute("user", user);
                     con.close();

@@ -63,7 +63,7 @@
                                                         <span><%=collection.getDiscount()%></span>
                                                     </div>
                                                     <% } %>
-                                                    <a class="ps-shoe__favorite" href="#"><i class="ps-icon-heart"></i></a>
+                                                    <%--<a class="ps-shoe__favorite" href="#"><i class="ps-icon-heart"></i></a>--%>
                                                     <img src="<%=collection.getImages().get(0)%>" alt="">
                                                     <a class="ps-shoe__overlay" href="/detail/<%=collection.getId()%>.html"></a>
                                                 </div>

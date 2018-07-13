@@ -38,7 +38,7 @@
                     <c:if test="${ param.status == 'Success' }">
                         <div class="form-group">
                             <div class="alert alert-success" role="alert">注册成功</div>
-                            <%response.setHeader("Refresh", "3;URL=index.html");%>
+                            <%response.setHeader("Refresh", "1;URL=index.html");%>
                         </div>
                     </c:if>
                     <div class="form-group">

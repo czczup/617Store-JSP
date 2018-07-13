@@ -3,6 +3,10 @@
         "http://tuckey.org/res/dtds/urlrewrite2.6.dtd">
 <urlrewrite>
     <rule>
+        <from>/$</from>
+        <to>/index.html</to>
+    </rule>
+    <rule>
         <from>/product-detail.html</from>
         <to>/product-detail.jsp</to>
     </rule>
@@ -53,5 +57,13 @@
     <rule>
         <from>/store-index.html</from>
         <to>/store-index.jsp</to>
+    </rule>
+    <rule>
+        <from>/store-cart.html</from>
+        <to>/store-cart.jsp</to>
+    </rule>
+    <rule>
+        <from>/cart.html</from>
+        <to>/api/displayCart</to>
     </rule>
 </urlrewrite>

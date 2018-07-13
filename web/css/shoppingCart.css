@@ -142,7 +142,7 @@
 }
 
 .numInput {
-    width: 50px;
+    width: 80px;
     height: 30px;
     margin-left: -4px;
     border: 1px solid #EDEDED;
@@ -204,12 +204,12 @@
     color: #999999;
     position: absolute;
     right: 140px;
+    white-space: nowrap;
 }
 
 .servicenum {
-    position: absolute;
-    right: 35%;
     color: #999999;
+    margin-left: 20px;
 }
 
 .removeMuch {
@@ -233,6 +233,8 @@
 
 .ShopCartTable .selectLeft {
     text-align: left;
+    max-width: 250px;
+    min-width: 200px;
 }
 
 .el-checkbox__input {
@@ -258,8 +260,9 @@
     height: 50px;
     line-height: 50px;
     border: 1px solid #EDEDED;
-    margin-top: 20px;
-    margin-bottom: 30px;
+    margin: 0 auto;
+    width: 80%;
+    margin-top: 40px;
 }
 
 .totalMoneyClass {
@@ -280,4 +283,14 @@
 
 td.is-null {
     border: 0px;
+}
+
+.ps-main {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.cart-title {
+    font-size: 20px;
+    margin-bottom: 20px;
 }

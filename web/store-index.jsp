@@ -97,7 +97,6 @@
                                                         <span><%=recommend.getDiscount()%></span>
                                                     </div>
                                                 <% } %>
-                                                <a class="ps-shoe__favorite" href="#"><i class="ps-icon-heart"></i></a>
                                                 <img src="<%=recommend.getImages().get(0)%>" alt="">
                                                 <a class="ps-shoe__overlay" href="/detail/<%=recommend.getId()%>.html"></a>
                                             </div>
@@ -189,7 +188,6 @@
                                             <span><%=rankList.get(i).getDiscount()%></span>
                                         </div>
                                     <% } %>
-                                    <a class="ps-shoe__favorite" href="#"><i class="ps-icon-heart"></i></a>
                                     <img src="<%=rankList.get(i).getImages().get(0)%>" alt="">
                                     <a class="ps-shoe__overlay" href="/detail/<%=rankList.get(i).getId()%>.html"></a>
                                 </div>
@@ -278,37 +276,74 @@
         <div class="ps-section ps-home-blog pt-80 pb-80">
             <div class="ps-container">
                 <div class="ps-section__header mb-50">
-                    <h2 class="ps-section__title" data-mask="Stories">- 品牌故事</h2>
-                    <div class="ps-section__action"><a class="ps-morelink text-uppercase" href="#">查看全部<i class="fa fa-long-arrow-right"></i></a></div>
+                    <h3 class="ps-section__title" data-mask="discount">- 限时特惠</h3>
                 </div>
-                <div class="ps-section__content">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
-                            <div class="ps-post">
-                                <div class="ps-post__thumbnail"><a class="ps-post__overlay" href="#"></a><img src="images/blog/1.jpg" alt=""></div>
-                                <div class="ps-post__content"><a class="ps-post__title" href="#">An Inside Look at the Breaking2 Kit</a>
-                                    <p class="ps-post__meta"><span>By:<a class="mr-5" href="#">Alena Studio</a></span> -<span class="ml-5">Jun 10, 2017</span></p>
-                                    <p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further…</p><a class="ps-morelink" href="#">Read more<i class="fa fa-long-arrow-right"></i></a>
+                <div class="ps-section__content pb-50">
+                    <div class="masonry-wrapper" data-col-md="4" data-col-sm="2" data-col-xs="1" data-gap="30" data-radio="100%">
+                        <div class="ps-masonry">
+                            <% List<CommodityListItem> discountList = (List<CommodityListItem>)request.getAttribute("discountList");%>
+                            <div class="grid-sizer"></div>
+                            <% for (int i = 0; i < discountList.size(); i++) { %>
+                            <% CommodityListItem discount = discountList.get(i); %>
+                            <div class="grid-item">
+                                <div class="grid-item__content-wrapper">
+                                    <div class="ps-shoe mb-30">
+                                        <div class="ps-shoe__thumbnail">
+                                            <% if (discount.isNewProduct()) { %>
+                                                <div class="ps-badge"><span>New</span></div>
+                                            <% } %>
+                                            <% if (discount.isDiscount()) { %>
+                                                <div class="ps-badge ps-badge--sale ps-badge--2nd">
+                                                    <span><%=discount.getDiscount()%></span>
+                                                </div>
+                                            <% } %>
+                                            <img src="<%=discount.getImages().get(0)%>" alt="">
+                                            <a class="ps-shoe__overlay" href="/detail/<%=discount.getId()%>.html"></a>
+                                        </div>
+                                        <div class="ps-shoe__content">
+                                            <div class="ps-shoe__variants">
+                                                <div class="ps-shoe__variant normal">
+                                                    <% for (int j = 1; j <discount.getImages().size(); j++) {%>
+                                                        <img src="<%=discount.getImages().get(j)%>" alt="">
+                                                    <%}%>
+                                                </div>
+                                                <select class="ps-rating ps-shoe__rating">
+                                                    <% for (int cnt = 1; cnt <= 5; cnt++) {%>
+                                                        <% if (discount.getStarNum()<cnt ) { %>
+                                                            <option value="1"><%=cnt%></option>
+                                                        <% } else { %>
+                                                            <option value="2"><%=cnt%></option>
+                                                        <%}%>
+                                                    <%}%>
+                                                </select>
+                                            </div>
+                                            <div class="ps-shoe__detail">
+                                                <a class="ps-shoe__name" href="/detail/<%=discount.getId()%>.html"><%=discount.getTitle()%></a>
+                                                <p class="ps-shoe__categories">
+                                                    <% for (int k = 0; k < discount.getTags().size(); k++) {%>
+                                                        <% if (k == 0) { %>
+                                                            <a href="/list.html?key=<%=discount.getTags().get(k)%>">
+                                                                <%=discount.getTags().get(k)%>
+                                                            </a>
+                                                        <% } else { %>
+                                                            , <a href="/list.html?key=<%=discount.getTags().get(k)%>">
+                                                            <%=discount.getTags().get(k)%>
+                                                            </a>
+                                                        <% } %>
+                                                    <% } %>
+                                                </p>
+                                                <span class="ps-shoe__price">
+                                                    <% if (discount.isDiscount()) {%>
+                                                        <del>￥<%=discount.getoPrice()%></del>
+                                                    <%}%>
+                                                    ￥<%=discount.getdPrice()%>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
-                            <div class="ps-post">
-                                <div class="ps-post__thumbnail"><a class="ps-post__overlay" href="#"></a><img src="images/blog/2.jpg" alt=""></div>
-                                <div class="ps-post__content"><a class="ps-post__title" href="#">Unpacking the Breaking2 Race Strategy</a>
-                                    <p class="ps-post__meta"><span>By:<a class="mr-5" href="#">Alena Studio</a></span> -<span class="ml-5">Jun 10, 2017</span></p>
-                                    <p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further…</p><a class="ps-morelink" href="#">Read more<i class="fa fa-long-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
-                            <div class="ps-post">
-                                <div class="ps-post__thumbnail"><a class="ps-post__overlay" href="#"></a><img src="images/blog/3.jpg" alt=""></div>
-                                <div class="ps-post__content"><a class="ps-post__title" href="#">Nike’s Latest Football Cleat Breaks the Mold</a>
-                                    <p class="ps-post__meta"><span>By:<a class="mr-5" href="#">Alena Studio</a></span> -<span class="ml-5">Jun 10, 2017</span></p>
-                                    <p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further…</p><a class="ps-morelink" href="#">Read more<i class="fa fa-long-arrow-right"></i></a>
-                                </div>
-                            </div>
+                            <% } %>
                         </div>
                     </div>
                 </div>

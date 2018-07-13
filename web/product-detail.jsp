@@ -1,6 +1,9 @@
 <%@ page pageEncoding="utf-8"%>
 <%@ page import="java.util.List" %>
 <%@ page import="model.CommodityListItem" %>
+<%@ page import="com.sun.org.apache.xpath.internal.operations.Bool" %>
+<%@ page import="controller.HandleProductDetail" %>
+<%@ page import="model.Detail" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -85,6 +88,7 @@
                                 <fmt:formatNumber value="${requestScope.detail.starNum}" maxFractionDigits="1" />星
                                 <a>(共有${fn:length(requestScope.detail.comments)}篇评论)</a>
                             </div>
+                            <div style="display: none" id="commodity-id">${requestScope.detail.commodity.id}</div>
                             <h1>${ requestScope.detail.commodity.title }</h1>
                             <p class="ps-product__category">
                                 <c:forEach items="${requestScope.detail.tags}" var="tag" varStatus="status">
@@ -92,13 +96,13 @@
                                     <a href="/list.html?key=${tag}">${tag}</a>
                                 </c:forEach>
                             </p>
-                            <h3 class="ps-product__price">
+                            <h3 class="ps-product__price" id="product-price">
                                 <c:choose>
                                     <c:when test="${requestScope.detail.commodity.discountPrice == requestScope.detail.commodity.originalPrice}">
-                                        ¥ <fmt:formatNumber value="${requestScope.detail.commodity.discountPrice}" maxFractionDigits="2" />
+                                        ¥ <span class="discount-price"><fmt:formatNumber value="${requestScope.detail.commodity.discountPrice}" maxFractionDigits="2" /></span>
                                     </c:when>
                                     <c:otherwise>
-                                        ¥ <fmt:formatNumber value="${requestScope.detail.commodity.discountPrice}" maxFractionDigits="2" />
+                                        ¥ <span class="discount-price"><fmt:formatNumber value="${requestScope.detail.commodity.discountPrice}" maxFractionDigits="2" /></span>
                                         <del> ¥ <fmt:formatNumber value="${requestScope.detail.commodity.originalPrice}" maxFractionDigits="2" /></del>
                                     </c:otherwise>
                                 </c:choose>
@@ -109,7 +113,7 @@
                             </div>
                             <c:forEach items="${ requestScope.detail.paramWithImage }" var="map" >
                                 <div class="ps-product__block ps-product__style">
-                                    <h4>选择${map.key}</h4>
+                                    <h4 class="select-1">选择${map.key}</h4>
                                     <ul>
                                         <c:forEach items="${ map.value }" var="image" >
                                             <li><a class="pickers"><img src="${image.value}" alt="${image.key}"></a></li>
@@ -121,7 +125,7 @@
 
                             <div class="ps-product__block ps-product__size">
                                 <c:forEach items="${ requestScope.detail.paramWithoutImage }" var="map" >
-                                    <h4>选择${map.key}<a href="#">尺码对照表</a></h4>
+                                    <h4><span class="select-2">选择${map.key}</span><a href="#">尺码对照表</a></h4>
                                     <select class="ps-select selectpicker">
                                         <option value="1">选择${map.key}</option>
                                         <c:forEach items="${ map.value }" var="item" >
@@ -133,12 +137,28 @@
                                     <h4>选择商品数量</h4>
                                 </c:if>
                                 <div class="form-group">
-                                    <input class="form-control" type="number" value="1">
+                                    <input id="amount-choose" class="form-control" type="number" value="1">
                                 </div>
                             </div>
-                            <div class="ps-product__shopping" style="cursor:pointer"><a class="ps-btn mb-10">加入购物车<i class="ps-icon-next"></i></a>
+                            <div class="ps-product__shopping"><a class="ps-btn mb-10" style="cursor:pointer" id="cartButton">加入购物车<i class="ps-icon-next"></i></a>
                                 <div class="ps-product__actions">
-                                    <a class="mr-10" style="cursor:pointer"><i class="ps-icon-heart"></i></a>
+                                    <c:if test="${ sessionScope.user == null }">
+                                        <a class="mr-10" id="collection-heart" style="cursor:pointer"><i class="ps-icon-heart"></i></a>
+                                    </c:if>
+                                    <c:if test="${ sessionScope.user != null }">
+                                        <%
+                                            Detail detail = (Detail)request.getAttribute("detail");
+                                            int id = detail.getCommodity().getId();
+                                            int userId = user.getId();
+                                            Boolean flag = HandleProductDetail.getIsCollection(id,userId);
+                                        %>
+                                        <% if (flag) { %>
+                                            <a class="mr-10" id="collection-heart" style="cursor:pointer;background-color:#50CF96;" collected="true"><i class="ps-icon-heart"></i></a>
+                                        <% } else { %>
+                                            <a class="mr-10" id="collection-heart" style="cursor:pointer"><i class="ps-icon-heart"></i></a>
+                                        <% } %>
+                                    </c:if>
+
                                     <a style="cursor:pointer"><i class="ps-icon-share"></i></a>
                                 </div>
                             </div>

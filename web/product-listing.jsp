@@ -72,7 +72,6 @@
                                             <span><%=goodsList.get(i).getDiscount()%></span>
                                         </div>
                                     <% } %>
-                                    <a class="ps-shoe__favorite" href="#"><i class="ps-icon-heart"></i></a>
                                     <img src="<%=goodsList.get(i).getImages().get(0)%>" alt="">
                                     <a class="ps-shoe__overlay" href="/detail/<%=goodsList.get(i).getId()%>.html"></a>
                                 </div>

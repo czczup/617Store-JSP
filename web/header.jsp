@@ -1,10 +1,18 @@
 <%@ page import="tools.UrlFilter" %>
+<%@ page import="controller.HandleDisplayCart" %>
+<%@ page import="model.User" %>
+<%@ page import="model.CartSimple" %>
 <%@ page pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     String url = request.getQueryString();
     System.out.println(url);
     String href = UrlFilter.filterLogout(url);
+    User user = (User)session.getAttribute("user");
+    CartSimple cart = null;
+    if (user != null) {
+        cart = HandleDisplayCart.getSimpleInfo(user.getId());
+    }
 %>
 <div class="header--sidebar"></div>
 <header class="header">
@@ -27,6 +35,7 @@
                             <div class="btn-group ps-dropdown">
                                 <a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     ${ user.username }
+                                    <div style="display: none" id="user-id">${user.id}</div>
                                     <i class="fa fa-angle-down"></i>
                                 </a>
 
@@ -128,7 +137,7 @@
                             </div>
                         </div>
                     </li>
-                    <li class="menu-item menu-item-has-children has-mega-menu"><a href="#">女子</a>
+                    <li class="menu-item menu-item-has-children has-mega-menu"><a href="/list.html?class=女">女子</a>
                         <div class="mega-menu">
                             <div class="mega-wrap">
                                 <div class="mega-column">
@@ -188,7 +197,7 @@
                             </div>
                         </div>
                     </li>
-                    <li class="menu-item menu-item-has-children has-mega-menu"><a href="#">儿童</a>
+                    <li class="menu-item menu-item-has-children has-mega-menu"><a href="/list.html?class=儿童">儿童</a>
                         <div class="mega-menu">
                             <div class="mega-wrap">
                                 <div class="mega-column">
@@ -242,42 +251,38 @@
                             </div>
                         </div>
                     </li>
-                    <li class="menu-item"><a href="/list.html">新品</a></li>
+                    <li class="menu-item"><a href="/list.html?class=新品">新品</a></li>
                     <li class="menu-item"><a href="/list.html">销量排名</a></li>
                 </ul>
             </div>
             <div class="navigation__column right">
-                <form class="ps-search--header" action="do_action" method="post">
+                <form class="ps-search--header" action="/api/search" method="post">
                     <input class="form-control" type="text" placeholder="搜索心仪的商品…">
                     <button><i class="ps-icon-search"></i></button>
                 </form>
-                <div class="ps-cart"><a class="ps-cart__toggle" href="#"><span><i>20</i></span><i class="ps-icon-shopping-cart"></i></a>
+                <div class="ps-cart">
+                    <a class="ps-cart__toggle" style="cursor: pointer">
+                        <c:if test="${ sessionScope.user != null }">
+                            <span><i class="cart-amount"><%=cart.getCartAmount()%></i></span>
+                        </c:if>
+                        <i class="ps-icon-shopping-cart"></i>
+                    </a>
                     <div class="ps-cart__listing">
-                        <div class="ps-cart__content">
-                            <div class="ps-cart-item"><a class="ps-cart-item__close" href="#"></a>
-                                <div class="ps-cart-item__thumbnail"><a href="/list.html"></a><img src="/images/cart-preview/1.jpg" alt=""></div>
-                                <div class="ps-cart-item__content"><a class="ps-cart-item__title" href="product-detail.html">商品1</a>
-                                    <p><span>数量：<i>12</i></span><span>合计：<i>£176</i></span></p>
+                        <c:if test="${ sessionScope.user == null }">
+                            <div style="">
+                                <div style="text-align: center">
+                                    <img src="/images/hint/hint_cart_login.png" style="display: inline-block" >
                                 </div>
                             </div>
-                            <div class="ps-cart-item"><a class="ps-cart-item__close" href="#"></a>
-                                <div class="ps-cart-item__thumbnail"><a href="/list.html"></a><img src="/images/cart-preview/2.jpg" alt=""></div>
-                                <div class="ps-cart-item__content"><a class="ps-cart-item__title" href="product-detail.html">商品2</a>
-                                    <p><span>数量：<i>12</i></span><span>合计：<i>£176</i></span></p>
-                                </div>
+                            <div class="ps-cart__footer"><a class="ps-btn" href="/login.html">登录<i class="ps-icon-arrow-left"></i></a></div>
+                        </c:if>
+                        <c:if test="${ sessionScope.user != null }">
+                            <div class="ps-cart__total">
+                                <p>商品总数：<span class="cart-amount"><%=cart.getCartAmount()%></span></p>
+                                <p>总金额：<span class="cart-price"><%=cart.getCartPrice()%></span></p>
                             </div>
-                            <div class="ps-cart-item"><a class="ps-cart-item__close" href="#"></a>
-                                <div class="ps-cart-item__thumbnail"><a href="/list.html"></a><img src="/images/cart-preview/3.jpg" alt=""></div>
-                                <div class="ps-cart-item__content"><a class="ps-cart-item__title" href="product-detail.html">商品3</a>
-                                    <p><span>数量：<i>12</i></span><span>合计：<i>£176</i></span></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ps-cart__total">
-                            <p>商品总数：<span>36</span></p>
-                            <p>总金额：<span>£528.00</span></p>
-                        </div>
-                        <div class="ps-cart__footer"><a class="ps-btn" href="/cart.html">结算<i class="ps-icon-arrow-left"></i></a></div>
+                            <div class="ps-cart__footer"><a class="ps-btn" href="/cart.html">结算<i class="ps-icon-arrow-left"></i></a></div>
+                        </c:if>
                     </div>
                 </div>
                 <div class="menu-toggle"><span></span></div>

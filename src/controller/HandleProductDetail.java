@@ -199,4 +199,23 @@ public class HandleProductDetail extends HttpServlet {
     public void getRecommendList(){
         goodsList = HandleCommodity.getCommodityList("SELECT * FROM commodityListItems LIMIT 5");
     }
+
+    public static boolean getIsCollection(int id, int userId){
+        boolean result = false;
+        try {
+            String url = "jdbc:mysql://120.79.162.134:3306/617Store?useSSL=false&useUnicode=true&characterEncoding=utf8";
+            Connection con = DriverManager.getConnection(url, "root", "abcphotovalley");
+            PreparedStatement sql = con.prepareStatement("SELECT count(1) as result FROM collectionListItems WHERE id=? AND user_id=?;");
+            sql.setInt(1, id);
+            sql.setInt(2, userId);
+            ResultSet rs = sql.executeQuery();
+             // 表示没有被收藏
+            while (rs.next()) {
+                result = rs.getBoolean("result");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
 }

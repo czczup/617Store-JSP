@@ -40,6 +40,7 @@ public class HandleIndex extends HttpServlet {
         getSlider(request);
         getRecommendList(request);
         getRankList(request);
+        getDiscountList(request);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/store-index.html");
         dispatcher.forward(request, response);
     }
@@ -79,5 +80,11 @@ public class HandleIndex extends HttpServlet {
         List<CommodityListItem> rankList = HandleCommodity.getCommodityList("SELECT * FROM commodityListItems ORDER BY -sale_volume LIMIT 6");
         request.setAttribute("rankList",rankList);
         System.out.println("HandleIndex: rankList加载成功");
+    }
+
+    private void getDiscountList(HttpServletRequest request) {
+        List<CommodityListItem> discountList = HandleCommodity.getCommodityList("SELECT * FROM commodityListItems WHERE oPrice!=dPrice LIMIT 4");
+        request.setAttribute("discountList",discountList);
+        System.out.println("HandleIndex: discountList");
     }
 }
