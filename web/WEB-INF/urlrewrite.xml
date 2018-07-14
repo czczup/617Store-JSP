@@ -66,4 +66,12 @@
         <from>/cart.html</from>
         <to>/api/displayCart</to>
     </rule>
+    <rule>
+        <from>/payment.html</from>
+        <to>/api/payment</to>
+    </rule>
+    <rule>
+        <from>/store-payment.html</from>
+        <to>/store-payment.jsp</to>
+    </rule>
 </urlrewrite>

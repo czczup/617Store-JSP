@@ -4,6 +4,7 @@ package controller;
 import model.Cart;
 import model.CartSimple;
 import model.User;
+import tools.Common;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -42,7 +43,7 @@ public class HandleDisplayCart extends HttpServlet {
             User user = (User)session.getAttribute("user");
             List<Cart> cartList = new ArrayList<>();
             if(user != null) {
-                Connection con = DriverManager.getConnection(url, "root", "abcphotovalley");
+                Connection con = DriverManager.getConnection(Common.url, Common.username,Common.password);
                 PreparedStatement sql = con.prepareStatement("SELECT * FROM cartList WHERE user_id = ?");
                 sql.setInt(1, user.getId());
                 ResultSet rs = sql.executeQuery();
@@ -57,7 +58,6 @@ public class HandleDisplayCart extends HttpServlet {
                     cart.setAttrWithoutImage(rs.getString("attr_without_image"));
                     cart.setTitle(rs.getString("title"));
                     cart.setPrice(rs.getDouble("price"));
-                    System.out.println(cart);
                     cartList.add(cart);
                 }
                 request.setAttribute("cartList",cartList);
@@ -77,7 +77,7 @@ public class HandleDisplayCart extends HttpServlet {
         CartSimple cart = new CartSimple();
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection(url, "root", "abcphotovalley");
+            Connection con = DriverManager.getConnection(Common.url, Common.username,Common.password);
             PreparedStatement sql = con.prepareStatement("SELECT * FROM cartSimpleInfo WHERE user_id = ?");
             sql.setInt(1, userId);
             ResultSet rs = sql.executeQuery();

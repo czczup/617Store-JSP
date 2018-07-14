@@ -1,5 +1,6 @@
 package controller;
 
+import tools.Common;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,7 +26,6 @@ public class HandleUpdateCollection extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String url = "jdbc:mysql://120.79.162.134:3306/617Store?useSSL=false&useUnicode=true&characterEncoding=utf8";
         response.setContentType("application/text; charset=utf-8");
         request.setCharacterEncoding("utf-8");
         PrintWriter out = response.getWriter();
@@ -33,7 +33,7 @@ public class HandleUpdateCollection extends HttpServlet {
         int commodityId = Integer.parseInt(request.getParameter("commodity_id"));
         String commend = request.getParameter("commend");
         try {
-            Connection con = DriverManager.getConnection(url,"root","abcphotovalley");
+            Connection con = DriverManager.getConnection(Common.url, Common.username,Common.password);
             if( commend.equals("Cancel")) {
                 PreparedStatement sql = con.prepareStatement("UPDATE collection SET status=0 WHERE user_id = ? AND commodity_id = ?");
                 sql.setInt(1,userId);

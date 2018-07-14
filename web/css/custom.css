@@ -20,3 +20,7 @@
     display: inline-block;
     margin: 0 70px 0;
 }
+
+.btn.dropdown-toggle.btn-primary {
+    margin-bottom: 3px;
+}

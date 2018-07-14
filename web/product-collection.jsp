@@ -50,18 +50,18 @@
                                 <div class="ps-masonry">
                                     <div class="grid-sizer"></div>
                                     <% for (int i = 0; i < collectionList.size(); i++) { %>
-                                    <% CommodityListItem collection = collectionList.get(i); %>
-                                    <div class="grid-item">
+                                        <% CommodityListItem collection = collectionList.get(i); %>
+                                        <div class="grid-item">
                                         <div class="grid-item__content-wrapper">
                                             <div class="ps-shoe mb-30">
                                                 <div class="ps-shoe__thumbnail">
                                                     <% if (collection.isNewProduct()) { %>
-                                                    <div class="ps-badge"><span>New</span></div>
+                                                        <div class="ps-badge"><span>New</span></div>
                                                     <% } %>
                                                     <% if (collection.isDiscount()) { %>
-                                                    <div class="ps-badge ps-badge--sale ps-badge--2nd">
-                                                        <span><%=collection.getDiscount()%></span>
-                                                    </div>
+                                                        <div class="ps-badge ps-badge--sale ps-badge--2nd">
+                                                            <span><%=collection.getDiscount()%></span>
+                                                        </div>
                                                     <% } %>
                                                     <%--<a class="ps-shoe__favorite" href="#"><i class="ps-icon-heart"></i></a>--%>
                                                     <img src="<%=collection.getImages().get(0)%>" alt="">
@@ -71,16 +71,16 @@
                                                     <div class="ps-shoe__variants">
                                                         <div class="ps-shoe__variant normal">
                                                             <% for (int j = 1; j <collection.getImages().size(); j++) {%>
-                                                            <img src="<%=collection.getImages().get(j)%>" alt="">
+                                                                <img src="<%=collection.getImages().get(j)%>" alt="">
                                                             <%}%>
                                                         </div>
                                                         <select class="ps-rating ps-shoe__rating">
                                                             <% for (int cnt = 1; cnt <= 5; cnt++) {%>
-                                                            <% if (collection.getStarNum()<cnt ) { %>
-                                                            <option value="1"><%=cnt%></option>
-                                                            <% } else { %>
-                                                            <option value="2"><%=cnt%></option>
-                                                            <%}%>
+                                                                <% if (collection.getStarNum()<cnt ) { %>
+                                                                    <option value="1"><%=cnt%></option>
+                                                                <% } else { %>
+                                                                    <option value="2"><%=cnt%></option>
+                                                                <%}%>
                                                             <%}%>
                                                         </select>
                                                     </div>
@@ -88,21 +88,21 @@
                                                         <a class="ps-shoe__name" href="/detail/<%=collection.getId()%>.html"><%=collection.getTitle()%></a>
                                                         <p class="ps-shoe__categories">
                                                             <% for (int k = 0; k < collection.getTags().size(); k++) {%>
-                                                            <% if (k == 0) { %>
-                                                            <a href="/list.html?key=<%=collection.getTags().get(k)%>">
-                                                                <%=collection.getTags().get(k)%>
-                                                            </a>
-                                                            <% } else { %>
-                                                            , <a href="/list.html?key=<%=collection.getTags().get(k)%>">
-                                                            <%=collection.getTags().get(k)%>
-                                                        </a>
-                                                            <% } %>
+                                                                <% if (k == 0) { %>
+                                                                <a href="/list.html?key=<%=collection.getTags().get(k)%>">
+                                                                    <%=collection.getTags().get(k)%>
+                                                                </a>
+                                                                <% } else { %>
+                                                                , <a href="/list.html?key=<%=collection.getTags().get(k)%>">
+                                                                    <%=collection.getTags().get(k)%>
+                                                                </a>
+                                                                <% } %>
                                                             <% } %>
                                                         </p>
                                                         <span class="ps-shoe__price">
 						                                    <% if (collection.isDiscount()) {%>
                                                                 <del>￥<%=collection.getoPrice()%></del>
-                                                            <%}%>
+                                                            <% } %>
                                                             ￥<%=collection.getdPrice()%>
                                                         </span>
                                                     </div>

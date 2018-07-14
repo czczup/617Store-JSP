@@ -1,5 +1,7 @@
 package controller;
 
+import tools.Common;
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,7 +27,6 @@ public class HandleUpdateCart extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String url = "jdbc:mysql://120.79.162.134:3306/617Store?useSSL=false&useUnicode=true&characterEncoding=utf8";
         response.setContentType("application/text; charset=utf-8");
         request.setCharacterEncoding("utf-8");
         PrintWriter out = response.getWriter();
@@ -35,14 +36,8 @@ public class HandleUpdateCart extends HttpServlet {
         int userId = Integer.parseInt(request.getParameter("user_id")); // user_id一定有
         int commodityId = Integer.parseInt(request.getParameter("commodity_id")); // commodity_id一定有
         int amount = Integer.parseInt(request.getParameter("amount")); // amount一定有
-        System.out.println("HandleUpdateCart: "+alt);
-        System.out.println("HandleUpdateCart: "+src);
-        System.out.println("HandleUpdateCart: "+attr);
-        System.out.println("HandleUpdateCart: "+commodityId);
-        System.out.println("HandleUpdateCart: "+amount+" (amount)");
-        System.out.println("HandleUpdateCart: "+userId+" (userId)");
         try {
-            Connection con = DriverManager.getConnection(url,"root","abcphotovalley");
+            Connection con = DriverManager.getConnection(Common.url, Common.username,Common.password);
             PreparedStatement sql = con.prepareStatement("SELECT dPrice FROM commodityListItems WHERE id = ?");
             sql.setInt(1,commodityId);
             ResultSet rs = sql.executeQuery();

@@ -14,10 +14,12 @@
     <link rel="stylesheet" href="/plugins/ps-icon/style.css">
     <!-- CSS框架-->
     <link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/plugins/owl-carousel/assets/owl.carousel.css">
+    <link rel="stylesheet" href="/plugins/jquery-bar-rating/themes/fontawesome-stars.css">
+    <link rel="stylesheet" href="/plugins/bootstrap-select/css/bootstrap-select.min.css">
     <!-- 自定义CSS-->
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/custom.css">
-    <%--<link rel="stylesheet" href="/css/404.css">--%>
     <link rel="stylesheet" href="/plugins/layui/layui.css" />
     <link rel="stylesheet" href="/css/shoppingCart.css" />
 </head>
@@ -104,7 +106,7 @@
                             <span class="totalclassPoin">
                                 总价：<span class="totalMoneyClass">${requestScope.cartSimple.cartPrice}</span>&nbsp;元
                             </span>
-                            <span class="SettlementBtn">去结算</span>
+                            <a href="/payment.html"><span class="SettlementBtn">去结算</span></a>
                         </span>
                             </div>
 
@@ -113,13 +115,12 @@
                 </div>
             </c:if>
         </c:if>
-
-
     </main>
     <%@ include file="footer.jsp" %>
     <!-- JS Library-->
     <script type="text/javascript" src="/plugins/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/plugins/jquery-bar-rating/jquery.barrating.min.js"></script>
     <script type="text/javascript" src="/plugins/owl-carousel/owl.carousel.min.js"></script>
     <%--<!-- Custom scripts-->--%>
     <script type="text/javascript" src="/js/main.js"></script>

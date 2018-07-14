@@ -32,7 +32,6 @@
 <body class="ps-loading">
 <%@ include file="header.jsp" %>
 <main class="ps-main">
-
     <div class="ps-products-wrap pt-80 pb-80">
 			<div class="ps-products" data-mh="product-listing">
 				<div class="ps-product-action">

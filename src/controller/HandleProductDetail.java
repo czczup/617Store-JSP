@@ -1,6 +1,7 @@
 package controller;
 
 import model.*;
+import tools.Common;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -25,7 +26,6 @@ public class HandleProductDetail extends HttpServlet {
     private Commodity commodity = new Commodity();
     private Detail detail = new Detail();
     private List<CommodityListItem> goodsList;
-    private String url = "jdbc:mysql://120.79.162.134:3306/617Store?useSSL=false&useUnicode=true&characterEncoding=utf8";
 
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
@@ -41,7 +41,7 @@ public class HandleProductDetail extends HttpServlet {
         response.setContentType("application/text; charset=utf-8");
         request.setCharacterEncoding("utf-8");
         try {
-            con = DriverManager.getConnection(url, "root", "abcphotovalley");
+            con = DriverManager.getConnection(Common.url, Common.username,Common.password);
             String id = request.getParameter("id").trim();
             getCommodity(id);
             getTag(id);
@@ -146,7 +146,6 @@ public class HandleProductDetail extends HttpServlet {
             sql.setString(1, id);
             rs = sql.executeQuery();
             while (rs.next()) {
-                System.out.print(rs.getDouble("star"));
                 detail.setStarNum(rs.getDouble("star"));
             }
         } catch (SQLException e) {
@@ -203,8 +202,7 @@ public class HandleProductDetail extends HttpServlet {
     public static boolean getIsCollection(int id, int userId){
         boolean result = false;
         try {
-            String url = "jdbc:mysql://120.79.162.134:3306/617Store?useSSL=false&useUnicode=true&characterEncoding=utf8";
-            Connection con = DriverManager.getConnection(url, "root", "abcphotovalley");
+            Connection con = DriverManager.getConnection(Common.url, Common.username,Common.password);
             PreparedStatement sql = con.prepareStatement("SELECT count(1) as result FROM collectionListItems WHERE id=? AND user_id=?;");
             sql.setInt(1, id);
             sql.setInt(2, userId);

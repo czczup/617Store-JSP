@@ -46,7 +46,5 @@ public class HandleCollection extends HttpServlet {
 
     public void getCollectionList(int id){
         collectionList = HandleCommodity.getCommodityList("SELECT * FROM collectionListItems WHERE user_id="+id);
-        System.out.println("用户"+id+"的购物车有"+collectionList.size()+"件商品");
-        System.out.println("HandleCollection: "+collectionList);
     }
 }

@@ -1,6 +1,7 @@
 package controller;
 
 import model.User;
+import tools.Common;
 import tools.Hasher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -33,7 +34,6 @@ public class HandleRegister extends HttpServlet {
         String userName = request.getParameter("name").trim();
         String password = request.getParameter("password").trim();
         String email = request.getParameter("email").trim();
-        String url = "jdbc:mysql://120.79.162.134:3306/617Store?useSSL=false&useUnicode=true&characterEncoding=utf8";
         Connection con;
         PreparedStatement sql;
         HttpSession session = request.getSession(true);
@@ -41,7 +41,7 @@ public class HandleRegister extends HttpServlet {
         Hasher hasher = new Hasher();
         password = hasher.encode(password);
         try {
-            con = DriverManager.getConnection(url,"root","abcphotovalley");
+            con = DriverManager.getConnection(Common.url, Common.username,Common.password);
             String insertCondition = "INSERT INTO user(username,password,email) VALUES (?,?,?)";
             sql = con.prepareStatement(insertCondition);
             if (boo) {

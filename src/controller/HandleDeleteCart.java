@@ -1,5 +1,7 @@
 package controller;
 
+import tools.Common;
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,7 +33,7 @@ public class HandleDeleteCart extends HttpServlet {
         PrintWriter out = response.getWriter();
         int id = Integer.parseInt(request.getParameter("cartId"));
         try {
-            Connection con = DriverManager.getConnection(url,"root","abcphotovalley");
+            Connection con = DriverManager.getConnection(Common.url, Common.username,Common.password);
             PreparedStatement sql = con.prepareStatement("DELETE FROM cart WHERE id = ?");
             sql.setInt(1,id);
             if(sql.executeUpdate() > 0) {

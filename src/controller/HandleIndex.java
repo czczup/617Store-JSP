@@ -2,6 +2,7 @@ package controller;
 
 import model.CommodityListItem;
 import model.Slider;
+import tools.Common;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -47,7 +48,7 @@ public class HandleIndex extends HttpServlet {
 
     private void getSlider(HttpServletRequest request) {
         try{
-            con = DriverManager.getConnection(url, "root","abcphotovalley");
+            Connection con = DriverManager.getConnection(Common.url, Common.username,Common.password);
             ps = con.prepareStatement("SELECT * FROM slider");
             rs = ps.executeQuery();
             List<Slider> sliderList = new ArrayList<>();

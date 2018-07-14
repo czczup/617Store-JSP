@@ -1,6 +1,7 @@
 package controller;
 
 import model.User;
+import tools.Common;
 import tools.Hasher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -35,7 +36,6 @@ public class HandleLogin extends HttpServlet {
                 System.out.println("HandleLogin: "+username+"登录成功");
                 session.setAttribute("user",user);
                 String referer = (String)session.getAttribute("referer");
-                System.out.println("HandleLogin: "+referer);
                 response.sendRedirect(referer);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -55,11 +55,10 @@ public class HandleLogin extends HttpServlet {
         Connection con;
         PreparedStatement sql;
         ResultSet rs;
-        String url = "jdbc:mysql://120.79.162.134:3306/617Store?useSSL=false&useUnicode=true&characterEncoding=utf8";
         String queryPassword = null;
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection(url,"root","abcphotovalley");
+            con = DriverManager.getConnection(Common.url, Common.username,Common.password);
             sql = con.prepareStatement("SELECT * FROM user WHERE username=?;");
             sql.setString(1,username);
             rs = sql.executeQuery();
