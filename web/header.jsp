@@ -6,7 +6,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     String url = request.getQueryString();
-    System.out.println(url);
     String href = UrlFilter.filterLogout(url);
     User user = (User)session.getAttribute("user");
     CartSimple cart = null;
@@ -256,9 +255,9 @@
                 </ul>
             </div>
             <div class="navigation__column right">
-                <form class="ps-search--header" action="/api/search" method="post">
-                    <input class="form-control" type="text" placeholder="搜索心仪的商品…">
-                    <button><i class="ps-icon-search"></i></button>
+                <form class="ps-search--header" action="list.html?a=5" method="GET">
+                    <input class="form-control" name="key" type="text" placeholder="搜索心仪的商品…">
+                    <button type="submit"><i class="ps-icon-search"></i></button>
                 </form>
                 <div class="ps-cart">
                     <a class="ps-cart__toggle" style="cursor: pointer">

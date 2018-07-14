@@ -466,7 +466,7 @@ function filterSlider() {
     var defaultMaxValue = el.data('default-max');
     var maxValue = el.data('max');
     var step = el.data('step');
-
+    var unit = el.data('unit');
     if (el.length > 0) {
         el.slider({
             min: 0,
@@ -475,17 +475,15 @@ function filterSlider() {
             range: true,
             values: [defaultMinValue, defaultMaxValue],
             slide: function(event, ui) {
-                var $this = $(this),
-                    values = ui.values;
-
-                min.text('$' + values[0]);
-                max.text('$' + values[1]);
+                var $this = $(this), values = ui.values;
+                min.text(values[0] + unit);
+                max.text(values[1] + unit);
             }
         });
 
         var values = el.slider("option", "values");
-        min.text('$' + values[0]);
-        max.text('$' + values[1]);
+        min.text(values[0] + unit);
+        max.text(values[1] + unit);
     }
     else {
         return false;

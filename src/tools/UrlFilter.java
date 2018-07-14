@@ -38,7 +38,7 @@ public class UrlFilter {
         } else {
             result = "?"+String.join("&",afterFilter)+"&status=Logout";
         }
-        System.out.println("退出按钮的url: "+result);
+        System.out.println("UrlFilter: 退出按钮的url: "+result);
         return result;
     }
 

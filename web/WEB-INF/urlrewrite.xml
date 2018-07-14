@@ -42,10 +42,10 @@
         <from>/list.html</from>
         <to>/api/commodities</to>
     </rule>
-    <rule>
-        <from>/list/(.*).html</from>
-        <to>/api/commodities?page=$1</to>
-    </rule>
+    <!--<rule>-->
+        <!--<from>/list/(.*).html</from>-->
+        <!--<to>/api/commodities?page=$1</to>-->
+    <!--</rule>-->
     <rule>
         <from>/404.html</from>
         <to>/404.jsp</to>

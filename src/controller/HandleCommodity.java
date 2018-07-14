@@ -1,5 +1,6 @@
 package controller;
 
+import model.Commodity;
 import model.CommodityListItem;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -13,6 +14,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 @WebServlet(name = "CommodityServlet", urlPatterns = "/api/commodities")
@@ -33,12 +35,93 @@ public class HandleCommodity extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException,ServletException {
-        session = request.getSession(true);
-        goodsList = getCommodityList("SELECT * FROM commodityListItems");
+        String queryClass = null;
+        String queryKey = null;
+        String queryPrice = null;
+        String queryColor = null;
+        String queryString = request.getQueryString();
+        System.out.println("QueryString: "+queryString);
+        try {
+            if(queryString != null && !queryString.equals("")) {
+                String[] tempList = queryString.split("&");
+                HashMap map = new HashMap();
+                for (int i=0;i<tempList.length;i++) {
+                    String[] temp = tempList[i].split("=");
+                    map.put(temp[0],temp[1]);
+                }
+                if(map.get("class")!=null) {
+                    queryClass = java.net.URLDecoder.decode((String)map.get("class"),"utf-8");
+                }
+                if(map.get("key")!=null) {
+                    queryKey = java.net.URLDecoder.decode((String)map.get("key"),"utf-8");
+                }
+                if(map.get("price")!=null) {
+                    queryPrice = java.net.URLDecoder.decode((String)map.get("price"),"utf-8");
+                }
+                if(map.get("color")!=null) {
+                    queryColor = java.net.URLDecoder.decode((String)map.get("color"),"utf-8");
+                }
+            }
+        } catch (Exception e) {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/404.html");
+            dispatcher.forward(request, response);
+        }
+        goodsList = doSearch(queryClass,queryKey,queryColor);
+        /* 输出商品列表 */
+        if(queryPrice != null) {
+            goodsList = priceFilter(goodsList, queryPrice);
+            System.out.println("过滤价格");
+        }
         request.setAttribute("CommodityListItem", goodsList);
         System.out.println("HandleCommodity: "+goodsList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/product-listing.html");
         dispatcher.forward(request, response);
+    }
+
+    public static List<CommodityListItem> doSearch(String queryClass, String queryKey, String queryColor) {
+        String sql = null;
+        if (queryColor == null) {
+            if (queryClass == null && queryKey == null) {
+                sql = "SELECT * FROM commodityListItems";
+            } else if (queryClass == null && queryKey != null) { // 搜索功能
+                String[] keyList = queryKey.split("/");
+                sql = "SELECT * FROM commodityListItems WHERE keyword LIKE '%"+keyList[0]+"%'";
+                for (int i=1;i<keyList.length;i++) {
+                    sql += " OR keyword LIKE '%"+keyList[i]+"%'";
+                }
+            } else if (queryClass != null && queryKey == null) { // 只查询大类别
+                sql = "SELECT * FROM commodityListItems WHERE keyword LIKE '%"+queryClass+"%'";
+            } else if (queryClass != null && queryKey != null) {
+                String[] keyList = queryKey.split("/");
+                sql = "SELECT * FROM commodityListItems WHERE keyword LIKE '%"+queryClass+"%' AND (keyword LIKE '%"+keyList[0]+"%'";
+                for (int i=1;i<keyList.length;i++) {
+                    sql += " OR keyword LIKE '%"+keyList[i]+"%'";
+                }
+                sql += ")";
+            }
+        } else {
+            if (queryClass == null && queryKey == null) {
+                sql = "SELECT * FROM commodityListItems WHERE keyword LIKE '%"+queryColor+"%'";
+            } else if (queryClass == null && queryKey != null) { // 搜索功能
+                String[] keyList = queryKey.split("/");
+                sql = "SELECT * FROM commodityListItems WHERE keyword LIKE '%"+queryColor+"%' AND keyword LIKE '%"+keyList[0]+"%'";
+                for (int i=1;i<keyList.length;i++) {
+                    sql += " OR keyword LIKE '%"+keyList[i]+"%'";
+                }
+            } else if (queryClass != null && queryKey == null) { // 只查询大类别
+                sql = "SELECT * FROM commodityListItems WHERE keyword LIKE '%"+queryColor+"%' AND keyword LIKE '%"+queryClass+"%'";
+            } else if (queryClass != null && queryKey != null) {
+                String[] keyList = queryKey.split("/");
+                sql = "SELECT * FROM commodityListItems WHERE keyword LIKE '%"+queryColor+"%' And keyword Like '%"+queryClass+"%' AND (keyword LIKE '%"+keyList[0]+"%'";
+                for (int i=1;i<keyList.length;i++) {
+                    sql += " OR keyword LIKE '%"+keyList[i]+"%'";
+                }
+                sql += ")";
+            }
+        }
+        System.out.println(sql);
+        goodsList = getCommodityList(sql);
+        return goodsList;
     }
 
     public static List<CommodityListItem> getCommodityList(String sql){
@@ -87,4 +170,30 @@ public class HandleCommodity extends HttpServlet {
         }
     }
 
+    private List<CommodityListItem> priceFilter(List<CommodityListItem> goodsList, String queryPrice) {
+        List<CommodityListItem> newList = new ArrayList<>();
+        String[] priceList = queryPrice.split("/");
+        int minPrice = Integer.parseInt(priceList[0]);
+        int maxPrice = Integer.parseInt(priceList[1]);
+        for(int i=0;i<goodsList.size();i++) {
+            CommodityListItem good = goodsList.get(i);
+            if(good.getdPrice()>=minPrice && good.getdPrice()<=maxPrice) {
+                newList.add(good);
+            }
+        }
+        return newList;
+    }
+
+    public static void main(String[] args) {
+        HandleCommodity.doSearch("男","鞋",null);
+        HandleCommodity.doSearch(null,"鞋",null);
+        HandleCommodity.doSearch(null,"鞋/女",null);
+        HandleCommodity.doSearch("男",null,null);
+        HandleCommodity.doSearch("男","鞋/女",null);
+        HandleCommodity.doSearch("男","鞋","黑");
+        HandleCommodity.doSearch(null,"鞋","黑");
+        HandleCommodity.doSearch(null,"鞋/女","黑");
+        HandleCommodity.doSearch("男",null,"黑");
+        HandleCommodity.doSearch("男","鞋/女","黑");
+    }
 }
