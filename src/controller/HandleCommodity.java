@@ -12,10 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.*;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
 
 @WebServlet(name = "CommodityServlet", urlPatterns = "/api/commodities")
 public class HandleCommodity extends HttpServlet {
@@ -39,6 +37,7 @@ public class HandleCommodity extends HttpServlet {
         String queryKey = null;
         String queryPrice = null;
         String queryColor = null;
+        String querySort = null;
         String queryString = request.getQueryString();
         System.out.println("QueryString: "+queryString);
         try {
@@ -61,6 +60,9 @@ public class HandleCommodity extends HttpServlet {
                 if(map.get("color")!=null) {
                     queryColor = java.net.URLDecoder.decode((String)map.get("color"),"utf-8");
                 }
+                if(map.get("sort")!=null) {
+                    querySort = java.net.URLDecoder.decode((String)map.get("sort"),"utf-8");
+                }
             }
         } catch (Exception e) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/404.html");
@@ -70,7 +72,10 @@ public class HandleCommodity extends HttpServlet {
         /* 输出商品列表 */
         if(queryPrice != null) {
             goodsList = priceFilter(goodsList, queryPrice);
-            System.out.println("过滤价格");
+        }
+        if(querySort != null) {
+            System.out.println("正在排序");
+            goodsList = sortFilter(goodsList, querySort);
         }
         request.setAttribute("CommodityListItem", goodsList);
         System.out.println("HandleCommodity: "+goodsList);
@@ -182,6 +187,15 @@ public class HandleCommodity extends HttpServlet {
             }
         }
         return newList;
+    }
+    private List<CommodityListItem> sortFilter(List<CommodityListItem> goodsList, String querySort) {
+        if(querySort.equals("asc")) { // 升序排序
+            Collections.sort(goodsList);
+        } else { // 降序排序
+            Collections.sort(goodsList);
+            Collections.reverse(goodsList);
+        }
+        return goodsList;
     }
 
     public static void main(String[] args) {

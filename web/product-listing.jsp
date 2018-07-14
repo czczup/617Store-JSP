@@ -39,8 +39,7 @@
 					<div class="ps-product__filter">
 						<select class="ps-select selectpicker">
 							<option value="1">筛选</option>
-							<option value="2">商品名</option>
-							<option value="3">价格升序</option>
+							<option value="2">价格升序</option>
 							<option value="3">价格降序</option>
 						</select>
 					</div>
