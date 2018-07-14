@@ -3,10 +3,28 @@ package model;
 public class HistoryOrder {
     private int commodityId;
     private String title;
+    private String image;
     private int quantity;
     private double sumPrice;
     private String attrWithImage;
     private String attrWithoutImage;
+    private double price;
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
 
     public int getCommodityId() {
         return commodityId;

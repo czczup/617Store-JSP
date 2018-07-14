@@ -70,4 +70,12 @@
         <from>/store-payment.html</from>
         <to>/store-payment.jsp</to>
     </rule>
+    <rule>
+        <from>/history.html</from>
+        <to>/api/history</to>
+    </rule>
+    <rule>
+        <from>/store-history.html</from>
+        <to>/store-history.jsp</to>
+    </rule>
 </urlrewrite>

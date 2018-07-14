@@ -1,5 +1,5 @@
 .container {
-    width: 380px;
+    width: 400px;
 }
 
 
@@ -73,7 +73,7 @@ a {
 
 .receipt__line__item {
     font-weight: 300;
-    width: 230px;
+    width: 250px;
 }
 
 .receipt__line__price {
