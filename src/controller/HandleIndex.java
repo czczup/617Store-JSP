@@ -6,7 +6,6 @@ import tools.Common;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,7 +19,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "HandleIndex", urlPatterns = "/api/index")
+@WebServlet(name = "IndexServlet", urlPatterns = "/api/index")
 public class HandleIndex extends HttpServlet {
     private static String url = "jdbc:mysql://120.79.162.134:3306/617Store?useSSL=false&useUnicode=true&characterEncoding=utf8";
     private Connection con = null;

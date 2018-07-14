@@ -5,7 +5,6 @@ import model.Cart;
 import model.CartSimple;
 import model.User;
 import tools.Common;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -20,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@WebServlet(name = "HandleDisplayCart", urlPatterns = "/api/displayCart")
+@WebServlet(name = "DisplayCartServlet", urlPatterns = "/api/displayCart")
 public class HandleDisplayCart extends HttpServlet {
 
     private static String url = "jdbc:mysql://120.79.162.134:3306/617Store?useSSL=false&useUnicode=true&characterEncoding=utf8";

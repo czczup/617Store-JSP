@@ -73,7 +73,7 @@ public class HandleCommodity extends HttpServlet {
             goodsList = sortFilter(goodsList, querySort);
         }
         request.setAttribute("CommodityListItem", goodsList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/product-listing.html");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/store-listing.html");
         dispatcher.forward(request, response);
     }
 

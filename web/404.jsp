@@ -15,6 +15,8 @@
     <!-- CSS框架-->
     <link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/plugins/owl-carousel/assets/owl.carousel.css">
+    <link rel="stylesheet" href="/plugins/jquery-bar-rating/themes/fontawesome-stars.css">
+    <link rel="stylesheet" href="/plugins/bootstrap-select/css/bootstrap-select.min.css">
     <!-- 自定义CSS-->
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/custom.css">
@@ -41,6 +43,8 @@
     <script type="text/javascript" src="/plugins/owl-carousel/owl.carousel.min.js"></script>
     <!-- Custom scripts-->
     <script type="text/javascript" src="/js/main.js"></script>
+    <script type="text/javascript" src="/js/404.js"></script>
+
 </body>
 
 </html>

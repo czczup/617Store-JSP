@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.*;
 
-@WebServlet(name = "HandleRegister", urlPatterns = "/api/register")
+@WebServlet(name = "RegisterServlet", urlPatterns = "/api/register")
 public class HandleRegister extends HttpServlet {
 
     private User user = new User();

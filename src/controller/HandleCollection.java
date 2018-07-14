@@ -33,10 +33,10 @@ public class HandleCollection extends HttpServlet {
                 int id = user.getId();
                 getCollectionList(id);
                 request.setAttribute("collectionList", collectionList);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/product-collection.html");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/store-collection.html");
                 dispatcher.forward(request, response);
             } catch (NullPointerException e) {
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/product-collection.html");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/store-collection.html");
                 dispatcher.forward(request, response);
             }
         } catch (Exception e) {

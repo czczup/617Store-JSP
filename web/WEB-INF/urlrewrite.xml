@@ -7,16 +7,16 @@
         <to>/index.html</to>
     </rule>
     <rule>
-        <from>/product-detail.html</from>
-        <to>/product-detail.jsp</to>
+        <from>/store-detail.html</from>
+        <to>/store-detail.jsp</to>
     </rule>
     <rule>
-        <from>/product-listing.html</from>
-        <to>/product-listing.jsp</to>
+        <from>/store-listing.html</from>
+        <to>/store-listing.jsp</to>
     </rule>
     <rule>
-        <from>/product-collection.html</from>
-        <to>/product-collection.jsp</to>
+        <from>/store-collection.html</from>
+        <to>/store-collection.jsp</to>
     </rule>
     <rule>
         <from>/collection.html</from>
@@ -42,10 +42,6 @@
         <from>/list.html</from>
         <to>/api/commodities</to>
     </rule>
-    <!--<rule>-->
-        <!--<from>/list/(.*).html</from>-->
-        <!--<to>/api/commodities?page=$1</to>-->
-    <!--</rule>-->
     <rule>
         <from>/404.html</from>
         <to>/404.jsp</to>

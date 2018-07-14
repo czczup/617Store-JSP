@@ -1,7 +1,6 @@
 package controller;
 
 import tools.Common;
-
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +12,7 @@ import java.io.PrintWriter;
 import java.sql.*;
 
 
-@WebServlet(name = "HandleDeleteCart", urlPatterns = "/api/deleteCart")
+@WebServlet(name = "DeleteCartServlet", urlPatterns = "/api/deleteCart")
 public class HandleDeleteCart extends HttpServlet {
 
     public void init(ServletConfig config) throws ServletException {

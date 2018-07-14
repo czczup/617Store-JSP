@@ -17,7 +17,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "HandlePayment", urlPatterns = "/api/payment")
+@WebServlet(name = "PaymentServlet", urlPatterns = "/api/payment")
 public class HandlePayment extends HttpServlet {
 
     public void init(ServletConfig config) throws ServletException {

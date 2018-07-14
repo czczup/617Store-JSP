@@ -2,7 +2,6 @@ package controller;
 
 import model.*;
 import tools.Common;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -17,7 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /* 成功就显示商品，不成功显示404 */
-@WebServlet(name = "HandleProductDetail", urlPatterns = "/api/detail")
+@WebServlet(name = "ProductDetailServlet", urlPatterns = "/api/detail")
 public class HandleProductDetail extends HttpServlet {
 
     private Connection con;
@@ -56,7 +55,7 @@ public class HandleProductDetail extends HttpServlet {
             request.setAttribute("CommodityListItem", goodsList);
             RequestDispatcher dispatcher;
             if(commodity.getId()==Integer.parseInt(id)) {
-                dispatcher = request.getRequestDispatcher("/product-detail.html");
+                dispatcher = request.getRequestDispatcher("/store-detail.html");
             } else {
                 dispatcher = request.getRequestDispatcher("/404.html");
             }

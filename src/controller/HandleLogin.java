@@ -16,7 +16,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-@WebServlet(name = "HandleLogin", urlPatterns = "/api/login")
+@WebServlet(name = "LoginServlet", urlPatterns = "/api/login")
 public class HandleLogin extends HttpServlet {
     private User user = new User();
 

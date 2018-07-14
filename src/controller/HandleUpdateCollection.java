@@ -12,7 +12,7 @@ import java.io.PrintWriter;
 import java.sql.*;
 
 
-@WebServlet(name = "HandleUpdateCollection", urlPatterns = "/api/updateCollection")
+@WebServlet(name = "UpdateCollectionServlet", urlPatterns = "/api/updateCollection")
 public class HandleUpdateCollection extends HttpServlet {
 
     public void init(ServletConfig config) throws ServletException {
