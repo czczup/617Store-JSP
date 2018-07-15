@@ -24,3 +24,24 @@
 .btn.dropdown-toggle.btn-primary {
     margin-bottom: 3px;
 }
+
+#tags-all {
+    margin: 50px 0 30px;
+}
+h1 {
+    margin-top: 0;
+}
+h3 {
+    margin-top: 15px;
+}
+#tags-margin {
+    margin-top: 15px;
+}
+
+.ui.large.label {
+    cursor:pointer;
+}
+#tag-bar {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

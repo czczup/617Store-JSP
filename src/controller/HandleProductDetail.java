@@ -44,6 +44,7 @@ public class HandleProductDetail extends HttpServlet {
             String id = request.getParameter("id").trim();
             getCommodity(id);
             getTag(id);
+            getAllTag(id);
             getImage(id);
             getComment(id);
             getStarNum(id);
@@ -214,5 +215,24 @@ public class HandleProductDetail extends HttpServlet {
             e.printStackTrace();
         }
         return result;
+    }
+
+    private void getAllTag(String id) {
+        try {
+            sql = con.prepareStatement("SELECT * FROM tag WHERE commodity_id=?;");
+            sql.setString(1, id);
+            rs = sql.executeQuery();
+            List<Tag> tags = new ArrayList<>();
+            while (rs.next()) {
+                Tag tag = new Tag();
+                tag.setId(rs.getInt("id"));
+                tag.setTag(rs.getString("tag"));
+                tag.setQuantity(rs.getInt("quantity"));
+                tags.add(tag);
+            }
+            detail.setAllTags(tags);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

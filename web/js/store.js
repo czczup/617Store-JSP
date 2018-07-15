@@ -181,5 +181,61 @@ $(function () {
             });
         }
     });
-
 });
+
+$(function () {
+    $(".ui.large.label").each(function () {
+        var self = this;
+        $(this).on('click',function () {
+            var tag = $(this).html().split("<div")[0];
+            $.ajax({
+                type:"POST",
+                url:"/api/addTag",
+                data:{
+                    "tag": tag,
+                    "commodity_id": $("#commodity-id").html()
+                },
+                dataType:'text',
+                async: true,
+                success:function(result){
+                    if (result != "Error") {
+                        var quantity = parseInt($(self).find(".detail").html());
+                        $(self).find(".detail").html(quantity+1);
+                    }
+                },
+            });
+        })
+    })
+});
+
+$(function () {
+    $("#add-tag-btn").on('click',function () {
+        var tag = $("#tag-input").val();
+        if(tag.length>=2) {
+            $.ajax({
+                type:"POST",
+                url:"/api/addTag",
+                data:{
+                    "tag": tag,
+                    "commodity_id": $("#commodity-id").html()
+                },
+                dataType:'text',
+                async: true,
+                success:function(result){
+                    if (result == "Insert") {
+                        $("<div class='ui large label'>"+tag+"<div class='detail'>1</div></div>").appendTo($("#tag-bar"));
+                    } else if (result == "Update") {
+                        $(".ui.large.label").each(function () {
+                            if($(this).html().split("<div")[0] == tag) {
+                                var quantity = parseInt($(this).find(".detail").html());
+                                $(this).find(".detail").html(quantity+1);
+                            }
+                        })
+                    }
+                },
+            });
+        } else {
+            alert("你输入的tag太短啦");
+        }
+    })
+})

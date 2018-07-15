@@ -7,10 +7,19 @@ public class Detail{
     private Commodity commodity;
     private List<String> images;
     private List<String> tags;
+    private List<Tag> allTags;
     private List<Comment> comments;
     private double starNum;
     private HashMap paramWithImage;
     private HashMap paramWithoutImage;
+
+    public List<Tag> getAllTags() {
+        return allTags;
+    }
+
+    public void setAllTags(List<Tag> allTags) {
+        this.allTags = allTags;
+    }
 
     public HashMap getParamWithoutImage() {
         return paramWithoutImage;

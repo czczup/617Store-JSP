@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="/plugins/slick/slick.css">
     <link rel="stylesheet" href="/plugins/bootstrap-select/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="/plugins/Magnific-Popup/magnific-popup.css">
+    <link rel="stylesheet" href="/plugins/semantic/semantic.css">
     <!-- Custom-->
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/custom.css">
@@ -235,19 +236,28 @@
                                 </form>
                             </div>
                             <div class="tab-pane" role="tabpanel" id="tab_03">
+                                <div id="tags-all" align="center">
+                                    <div class="ui message">
+                                        <div id="tag-bar">
+                                            <c:forEach items="${requestScope.detail.allTags}" var="uTag">
+                                                <div class="ui large label">${uTag.tag}<div class="detail">${uTag.quantity}</div></div>
+                                            </c:forEach>
+                                        </div>
+                                        <c:if test="${ sessionScope.user != null }">
+                                            <p id="tags-margin"></p>
+                                            <form class="ps-product__tags">
+                                                <div class="form-group">
+                                                    <input class="form-control" id="tag-input" type="text" placeholder="">
+                                                    <button type="button" id="add-tag-btn" class="ps-btn ps-btn--sm">添加标签</button>
+                                                </div>
+                                            </form>
+                                        </c:if>
+                                    </div>
+                                </div>
                                 <c:if test="${ sessionScope.user == null }">
                                     <div style="text-align: center">
                                         <img src="/images/hint/hint_tag_login.png" style="display: inline-block" >
                                     </div>
-                                </c:if>
-                                <c:if test="${ sessionScope.user != null }">
-                                    <p>添加你的标签 <span> *</span></p>
-                                    <form class="ps-product__tags" action="_action" method="post">
-                                        <div class="form-group">
-                                            <input class="form-control" type="text" placeholder="">
-                                            <button class="ps-btn ps-btn--sm">添加标签</button>
-                                        </div>
-                                    </form>
                                 </c:if>
                             </div>
                         </div>
