@@ -5,20 +5,20 @@ import random
 import os
 
 url_pool = {
-    "https://detail.tmall.com/item.htm?spm=a1z10.5-b-s.w4011-14234872789.161.2492295bKflGqa&id=534630253955&rn=b1aa6a5bc9ceba7854e0bc29c4186714&abbucket=14":[299,209],
-    "https://detail.tmall.com/item.htm?spm=a1z10.5-b-s.w4011-14234872789.165.2492295bKflGqa&id=529536805654&rn=b1aa6a5bc9ceba7854e0bc29c4186714&abbucket=14":[229,169],
-    "https://detail.tmall.com/item.htm?spm=a1z10.5-b-s.w4011-14234872789.169.2492295bKflGqa&id=563094022229&rn=b1aa6a5bc9ceba7854e0bc29c4186714&abbucket=14":[269,169],
-    "https://detail.tmall.com/item.htm?spm=a1z10.5-b-s.w4011-14234872789.173.2492295bKflGqa&id=534997940553&rn=b1aa6a5bc9ceba7854e0bc29c4186714&abbucket=14":[499,349],
-    "https://detail.tmall.com/item.htm?spm=a1z10.5-b-s.w4011-14234872789.177.2492295bKflGqa&id=558746828609&rn=b1aa6a5bc9ceba7854e0bc29c4186714&abbucket=14":[79,59],
-    "https://detail.tmall.com/item.htm?spm=a1z10.5-b-s.w4011-14234872789.181.2492295bKflGqa&id=554663875869&rn=b1aa6a5bc9ceba7854e0bc29c4186714&abbucket=14":[329,239],
-    "https://detail.tmall.com/item.htm?spm=a1z10.5-b-s.w4011-14234872789.185.2492295bKflGqa&id=44618868383&rn=b1aa6a5bc9ceba7854e0bc29c4186714&abbucket=14":[429,429],
-    "https://detail.tmall.com/item.htm?spm=a1z10.5-b-s.w4011-14234872789.189.2492295bKflGqa&id=534745750721&rn=b1aa6a5bc9ceba7854e0bc29c4186714&abbucket=14":[79,79]
+    "https://detail.tmall.com/item.htm?spm=a1z10.5-b-s.w4011-14234872789.193.2492295bKflGqa&id=566456890009&rn=b1aa6a5bc9ceba7854e0bc29c4186714&abbucket=14":[269,189],
+    "https://detail.tmall.com/item.htm?spm=a1z10.5-b-s.w4011-14234872789.197.2492295bKflGqa&id=557660480978&rn=b1aa6a5bc9ceba7854e0bc29c4186714&abbucket=14":[499,399],
+    "https://detail.tmall.com/item.htm?spm=a1z10.5-b-s.w4011-14234872789.201.2492295bKflGqa&id=543944543004&rn=b1aa6a5bc9ceba7854e0bc29c4186714&abbucket=14":[469,319],
+    "https://detail.tmall.com/item.htm?spm=a1z10.5-b-s.w4011-14234872789.205.2492295bKflGqa&id=548590041094&rn=b1aa6a5bc9ceba7854e0bc29c4186714&abbucket=14":[259,189],
+    "https://detail.tmall.com/item.htm?spm=a1z10.5-b-s.w4011-14234872789.209.2492295bKflGqa&id=547537862681&rn=b1aa6a5bc9ceba7854e0bc29c4186714&abbucket=14":[499,349],
+    "https://detail.tmall.com/item.htm?spm=a1z10.5-b-s.w4011-14234872789.213.2492295bKflGqa&id=535323063402&rn=b1aa6a5bc9ceba7854e0bc29c4186714&abbucket=14":[469,469],
+    "https://detail.tmall.com/item.htm?spm=a1z10.5-b-s.w4011-14234872789.217.2492295bKflGqa&id=539482751709&rn=b1aa6a5bc9ceba7854e0bc29c4186714&abbucket=14":[79,49],
+    "https://detail.tmall.com/item.htm?spm=a1z10.5-b-s.w4011-14234872789.221.2492295bKflGqa&id=546235932962&rn=b1aa6a5bc9ceba7854e0bc29c4186714&abbucket=14":[1299,579]
 }
 
 db = MySQLdb.connect("localhost", "root", "123456", "617Store", charset='utf8')
 cursor = db.cursor()
 
-commodity_id = 11
+commodity_id = 19
 for url,price in url_pool.items():
 
     r = requests.get(url)
