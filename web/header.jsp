@@ -96,8 +96,8 @@
                                         <li><a href="/list.html?class=男&key=长裤/紧身裤">长裤/紧身裤</a></li>
                                         <li><a href="/list.html?class=男&key=上衣/T恤">上衣/T恤</a></li>
                                         <li><a href="/list.html?class=男&key=短裤">短裤</a></li>
-                                        <li><a href="/list.html?class=男&key=紧身运动服">紧身运动服</a></li>
-                                        <li><a href="/list.html?class=男&key=装备/配件">装备/配件</a></li>
+                                        <li><a href="/list.html?class=男&key=紧身">紧身运动服</a></li>
+                                        <li><a href="/list.html?class=男&key=篮球袜/头带/包/护腕/护">装备/配件</a></li>
                                     </ul>
                                 </div>
                                 <div class="mega-column">
@@ -106,9 +106,9 @@
                                         <li><a href="/list.html?class=男&key=休闲鞋">休闲鞋</a></li>
                                         <li><a href="/list.html?class=男&key=夹克/连帽衫">夹克/连帽衫</a></li>
                                         <li><a href="/list.html?class=男&key=长裤">长裤</a></li>
-                                        <li><a href="/list.html?class=男&key=休闲T恤/POLO衫">休闲T恤/POLO衫</a></li>
+                                        <li><a href="/list.html?class=男&key=T恤/POLO衫">休闲T恤/POLO衫</a></li>
                                         <li><a href="/list.html?class=男&key=短裤">短裤</a></li>
-                                        <li><a href="/list.html?class=男&key=背包/帽袜">背包/帽袜</a></li>
+                                        <li><a href="/list.html?class=男&key=背包/帽/袜">背包/帽袜</a></li>
                                     </ul>
                                 </div>
                                 <div class="mega-column">
@@ -160,22 +160,22 @@
                                         <li><a href="/list.html?class=女&key=上衣/T恤">上衣/T恤</a></li>
                                         <li><a href="/list.html?class=女&key=短裤">短裤</a></li>
                                         <li><a href="/list.html?class=女&key=夹克/连帽衫">夹克/连帽衫</a></li>
-                                        <li><a href="/list.html?class=女&key=装备/配件">装备/配件</a></li>
+                                        <li><a href="/list.html?class=女&key=装备/配件/袜/球/包/护">装备/配件</a></li>
                                     </ul>
                                 </div>
                                 <div class="mega-column">
                                     <h4 class="mega-heading">休闲</h4>
                                     <ul class="mega-item">
-                                        <li><a href="/list.html?class=女&key=休闲鞋">休闲鞋</a></li>
-                                        <li><a href="/list.html?class=女&key=休闲上衣/T恤">休闲上衣/T恤</a></li>
-                                        <li><a href="/list.html?class=女&key=休闲裤">休闲裤</a></li>
-                                        <li><a href="/list.html?class=女&key=休闲夹克/连帽衫">休闲夹克/连帽衫</a></li>
+                                        <li><a href="/list.html?class=女&key=鞋">休闲鞋</a></li>
+                                        <li><a href="/list.html?class=女&key=上衣/T恤">休闲上衣/T恤</a></li>
+                                        <li><a href="/list.html?class=女&key=裤">休闲裤</a></li>
+                                        <li><a href="/list.html?class=女&key=夹克/连帽衫">休闲夹克/连帽衫</a></li>
                                     </ul>
                                 </div>
                                 <div class="mega-column">
                                     <h4 class="mega-heading">跑步</h4>
                                     <ul class="mega-item">
-                                        <li><a href="/list.html?class=女&key=跑步鞋">跑步鞋</a></li>
+                                        <li><a href="/list.html?class=女&key=鞋">跑步鞋</a></li>
                                         <li><a href="/list.html?class=女&key=上衣/T恤">上衣/T恤</a></li>
                                         <li><a href="/list.html?class=女&key=夹克/连帽衫">夹克/连帽衫</a></li>
                                         <li><a href="/list.html?class=女&key=长裤/紧身裤">长裤/紧身裤</a></li>
@@ -256,7 +256,7 @@
                 </ul>
             </div>
             <div class="navigation__column right">
-                <form class="ps-search--header" action="list.html?a=5" method="GET">
+                <form class="ps-search--header" action="/list.html" method="GET">
                     <input class="form-control" name="key" type="text" placeholder="搜索心仪的商品…">
                     <button type="submit"><i class="ps-icon-search"></i></button>
                 </form>
