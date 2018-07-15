@@ -1,6 +1,7 @@
 package controller;
 
 import model.CommodityListItem;
+import model.Page;
 import tools.Common;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -17,6 +18,7 @@ import java.util.Date;
 @WebServlet(name = "CommodityServlet", urlPatterns = "/api/commodities")
 public class HandleCommodity extends HttpServlet {
     private static List<CommodityListItem> goodsList;
+    private static Page page;
 
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
@@ -34,6 +36,7 @@ public class HandleCommodity extends HttpServlet {
         String queryPrice = null;
         String queryColor = null;
         String querySort = null;
+        String queryPage = null;
         String queryString = request.getQueryString();
         System.out.println("QueryString: "+queryString);
         try {
@@ -59,25 +62,23 @@ public class HandleCommodity extends HttpServlet {
                 if(map.get("sort")!=null) {
                     querySort = java.net.URLDecoder.decode((String)map.get("sort"),"utf-8");
                 }
+                if(map.get("page")!=null) {
+                    queryPage = java.net.URLDecoder.decode((String)map.get("page"),"utf-8");
+                }
             }
         } catch (Exception e) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/404.html");
             dispatcher.forward(request, response);
         }
-        goodsList = doSearch(queryClass,queryKey,queryColor);
-        /* 输出商品列表 */
-        if(queryPrice != null) {
-            goodsList = priceFilter(goodsList, queryPrice);
-        }
-        if(querySort != null) {
-            goodsList = sortFilter(goodsList, querySort);
-        }
+        goodsList = doSearch(queryClass,queryKey,queryColor,queryPage,queryPrice,querySort);
+        request.setAttribute("page",page);
+        System.out.println(page);
         request.setAttribute("CommodityListItem", goodsList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/store-listing.html");
         dispatcher.forward(request, response);
     }
 
-    public static List<CommodityListItem> doSearch(String queryClass, String queryKey, String queryColor) {
+    public static List<CommodityListItem> doSearch(String queryClass, String queryKey, String queryColor, String queryPage, String queryPrice, String querySort) {
         String sql = null;
         if (queryColor == null) {
             if (queryClass == null && queryKey == null) {
@@ -118,6 +119,29 @@ public class HandleCommodity extends HttpServlet {
                 sql += ")";
             }
         }
+        if(queryPrice != null) {
+            String[] priceList = queryPrice.split("/");
+            int minPrice = Integer.parseInt(priceList[0]);
+            int maxPrice = Integer.parseInt(priceList[1]);
+            if(sql.contains("WHERE")) {
+                sql = sql + " AND dPrice>"+minPrice+" AND dPrice<"+maxPrice;
+            } else {
+                sql = sql + " WHERE dPrice>"+minPrice+" AND dPrice<"+maxPrice;
+            }
+        }
+        if (querySort != null) {
+            if (querySort.equals("asc")) {
+                sql = sql + " ORDER BY dPrice ";
+            } else {
+                sql = sql + " ORDER BY -dPrice ";
+            }
+        }
+        if (queryPage == null) {
+            queryPage = "1";
+        }
+        System.out.println(sql);
+        page = calculatePage(queryPage,sql.replace("*","count(1) as count"));
+        sql = sql + " LIMIT "+(Integer.parseInt(queryPage)*10-10)+",10";
         System.out.println(sql);
         goodsList = getCommodityList(sql);
         return goodsList;
@@ -167,39 +191,42 @@ public class HandleCommodity extends HttpServlet {
         }
     }
 
-    private List<CommodityListItem> priceFilter(List<CommodityListItem> goodsList, String queryPrice) {
-        List<CommodityListItem> newList = new ArrayList<>();
-        String[] priceList = queryPrice.split("/");
-        int minPrice = Integer.parseInt(priceList[0]);
-        int maxPrice = Integer.parseInt(priceList[1]);
-        for(int i=0;i<goodsList.size();i++) {
-            CommodityListItem good = goodsList.get(i);
-            if(good.getdPrice()>=minPrice && good.getdPrice()<=maxPrice) {
-                newList.add(good);
+    public static Page calculatePage(String queryPage,String sql) {
+        Page page = new Page();
+        try {
+            System.out.println(sql);
+            Connection con = DriverManager.getConnection(Common.url, Common.username, Common.password);
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            int totalPage = 0;
+            while (rs.next()) {
+                totalPage = rs.getInt("count");
             }
+            int pageValue = Integer.parseInt(queryPage);
+            page.setThisPage(pageValue);
+            if (pageValue == 1) {
+                page.setLastPage(-1);
+            } else {
+                page.setLastPage(pageValue-1);
+            }
+            if (pageValue*10>=totalPage) {
+                page.setNextPage(-1);
+            } else {
+                page.setNextPage(pageValue+1);
+            }
+            if (pageValue*10+10>=totalPage) {
+                page.setNextNextPage(-1);
+            } else {
+                page.setNextNextPage(pageValue+2);
+            }
+            if (pageValue*10+20>=totalPage) {
+                page.setNextNextNextPage(-1);
+            } else {
+                page.setNextNextNextPage(pageValue+3);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return newList;
-    }
-    private List<CommodityListItem> sortFilter(List<CommodityListItem> goodsList, String querySort) {
-        if(querySort.equals("asc")) { // 升序排序
-            Collections.sort(goodsList);
-        } else { // 降序排序
-            Collections.sort(goodsList);
-            Collections.reverse(goodsList);
-        }
-        return goodsList;
-    }
-
-    public static void main(String[] args) {
-        HandleCommodity.doSearch("男","鞋",null);
-        HandleCommodity.doSearch(null,"鞋",null);
-        HandleCommodity.doSearch(null,"鞋/女",null);
-        HandleCommodity.doSearch("男",null,null);
-        HandleCommodity.doSearch("男","鞋/女",null);
-        HandleCommodity.doSearch("男","鞋","黑");
-        HandleCommodity.doSearch(null,"鞋","黑");
-        HandleCommodity.doSearch(null,"鞋/女","黑");
-        HandleCommodity.doSearch("男",null,"黑");
-        HandleCommodity.doSearch("男","鞋/女","黑");
+        return page;
     }
 }

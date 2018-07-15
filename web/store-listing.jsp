@@ -43,13 +43,31 @@
 						</select>
 					</div>
 					<div class="ps-pagination">
-						<ul class="pagination">
-							<li><a href="#"><i class="fa fa-angle-left"></i></a></li>
-							<li class="active"><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">...</a></li>
-							<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+						<ul class="pagination" id="page-select">
+							<div style="display: none">
+								<div id="lastPage">${requestScope.page.lastPage}</div>
+								<div id="thisPage">${requestScope.page.thisPage}</div>
+								<div id="nextPage">${requestScope.page.nextPage}</div>
+								<div id="nextNextPage">${requestScope.page.nextNextPage}</div>
+							</div>
+							<c:if test="${requestScope.page.thisPage!=1}">
+								<li><a id="page-select-1"><i class="fa fa-angle-left"></i></a></li>
+							</c:if>
+							<c:if test="${requestScope.page.lastPage!=-1}">
+								<li><a id="page-select-2">${requestScope.page.lastPage}</a></li>
+							</c:if>
+							<c:if test="${requestScope.page.thisPage!=-1}">
+								<li class="active"><a id="page-select-3">${requestScope.page.thisPage}</a></li>
+							</c:if>
+							<c:if test="${requestScope.page.nextPage!=-1}">
+								<li><a id="page-select-4">${requestScope.page.nextPage}</a></li>
+							</c:if>
+							<c:if test="${requestScope.page.nextNextPage!=-1}">
+								<li><a id="page-select-5">...</a></li>
+							</c:if>
+							<c:if test="${requestScope.page.nextPage!=-1}">
+								<li><a id="page-select-6"><i class="fa fa-angle-right"></i></a></li>
+							</c:if>
 						</ul>
 					</div>
 				</div>

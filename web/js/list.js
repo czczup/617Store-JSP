@@ -58,6 +58,7 @@ $(function () {
         var max_price = $("#max-price").html().slice(0,-3);
         var url = GetUrlRelativePath()+location.search;
         url = changeURLArg(url,"price",min_price+"/"+max_price).replace("#","");
+        url = changeURLArg(url,"page","1");
         window.location.href = url;
     });
 });
@@ -67,6 +68,7 @@ $(function () {
         $(this).on('click',function () {
             var url = GetUrlRelativePath()+location.search;
             url = changeURLArg(url.replace("#",""),"color",$(this).attr("value"));
+            url = changeURLArg(url,"page","1");
             window.location.href = url;
         });
     })
@@ -118,11 +120,33 @@ $(function () {
         var url = GetUrlRelativePath()+location.search;
         if (index == 1) {
             url = changeURLArg(url.replace("#",""),"sort","asc");
+            url = changeURLArg(url,"page","1");
         } else if (index == 2) {
             url = changeURLArg(url.replace("#",""),"sort","desc");
+            url = changeURLArg(url,"page","1");
         } else {
             url = deleteURLArg("sort");
         }
         window.location.href = url;
     })
+});
+
+$(document).ready(function () {
+    var url = location.search;
+    var lastPage = $("#lastPage").html();
+    var thisPage = $("#thisPage").html();
+    var nextPage = $("#nextPage").html();
+    var nextNextPage = $("#nextNextPage").html();
+    if(lastPage!=-1) {
+        $("#page-select-1").attr("href",changeURLArg(url,"page",thisPage-1));
+        $("#page-select-2").attr("href",changeURLArg(url,"page",thisPage-1));
+    }
+    $("#page-select-3").css("cursor","default");
+    if(nextPage!=-1) {
+        $("#page-select-4").attr("href",changeURLArg(url,"page",nextPage));
+        $("#page-select-6").attr("href",changeURLArg(url,"page",nextPage));
+    }
+    if(nextNextPage!=-1) {
+        $("#page-select-5").attr("href",changeURLArg(url,"page",nextNextPage));
+    }
 });
