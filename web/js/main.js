@@ -270,7 +270,8 @@ function masonry() {
 
 function rating() {
     $('.ps-rating').barrating({
-        theme: 'fontawesome-stars'
+        theme: 'fontawesome-stars',
+        readonly:true
     });
 }
 

@@ -194,14 +194,13 @@
                                                         </c:choose>
                                                     </c:forEach>
                                                 </select>
-                                                <p><a href="">${comment.user.username}</a> - ${comment.postDate}</p>
+                                                <p><a>${comment.user.username}</a> - ${comment.postDate}</p>
                                             </header>
                                             <p>${comment.comment}</p>
                                         </div>
                                     </div>
                                 </c:forEach>
-
-                                <form class="ps-product__review" action="_action" method="post">
+                                <form class="ps-product__review" method="post">
                                     <c:if test="${ sessionScope.user == null }">
                                         <div style="text-align: center">
                                             <img src="/images/hint/hint_comment_login.png" style="display: inline-block" >
@@ -213,11 +212,11 @@
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
                                                 <div class="form-group">
                                                     <label>您的评分<span></span></label>
-                                                    <select class="ps-rating">
+                                                    <select class="ps-rating-comment">
                                                         <option value="1">1</option>
-                                                        <option value="1">2</option>
-                                                        <option value="1">3</option>
-                                                        <option value="1">4</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
                                                         <option value="5">5</option>
                                                     </select>
                                                 </div>
@@ -228,7 +227,7 @@
                                                     <textarea class="form-control" rows="6"></textarea>
                                                 </div>
                                                 <div class="form-group">
-                                                    <button class="ps-btn ps-btn--sm">提交评论<i class="ps-icon-next"></i></button>
+                                                    <button type="button" class="ps-btn ps-btn--sm" id="comment-btn">提交评论<i class="ps-icon-next"></i></button>
                                                 </div>
                                             </div>
                                         </div>

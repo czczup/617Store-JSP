@@ -35,6 +35,7 @@
                                 <a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     ${ user.username }
                                     <div style="display: none" id="user-id">${user.id}</div>
+                                    <div style="display: none" id="user-avatar">${user.avatar}</div>
                                     <i class="fa fa-angle-down"></i>
                                 </a>
 

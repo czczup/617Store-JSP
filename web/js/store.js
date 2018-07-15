@@ -147,4 +147,39 @@ $(document).ready(function() {
     productVaritantsNormal();
     revolution();
     filterSlider();
+    $('.ps-rating-comment').barrating({
+        theme: 'fontawesome-stars',
+        initialRating: 4
+    });
+});
+
+$(function () {
+    $("#comment-btn").on('click',function () {
+        var starNum = $(this).parent().parent().prev().find(".br-current-rating").html();
+        var comment = $(this).parent().parent().find("textarea").val()
+        if (comment.length < 10) {
+            alert("评论不能小于10个字符哦");
+            return;
+        } else {
+            $.ajax({
+                type:"POST",
+                url:"/api/addComment",
+                data:{
+                    "starNum": starNum,
+                    "comment": comment,
+                    "commodity_id": $("#commodity-id").html()
+                },
+                dataType:'text',
+                async: true,
+                success:function(result){
+                    if (result == "OK") {
+                        location.reload();
+                    } else {
+                        alert("服务器出现异常");
+                    }
+                },
+            });
+        }
+    });
+
 });

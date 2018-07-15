@@ -66,6 +66,7 @@ public class HandleLogin extends HttpServlet {
                 queryPassword = rs.getString("password");
                 user.setUsername(username);
                 user.setId(rs.getInt("id"));
+                user.setAvatar(rs.getString("avatar"));
             }
             con.close();
             /* 判断加密后的密码与数据库中存储的密码是否相同 */
