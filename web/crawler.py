@@ -5,17 +5,17 @@ import random
 import os
 
 url_pool = {
-    "https://detail.tmall.com/item.htm?spm=a1z10.5-b-s.w4011-14234872789.136.4564295bWkLamZ&id=546408734932&rn=ce4ddb0ad73d90b885fc06b11913ca40&abbucket=6":[499,499],
-    "https://detail.tmall.com/item.htm?spm=a1z10.5-b-s.w4011-14234872789.148.4564295bWkLamZ&id=566793113225&rn=ce4ddb0ad73d90b885fc06b11913ca40&abbucket=6":[599,599],
-    "https://detail.tmall.com/item.htm?spm=a1z10.5-b-s.w4011-14234872789.152.4564295bWkLamZ&id=565690575582&rn=ce4ddb0ad73d90b885fc06b11913ca40&abbucket=6":[699,559],
-    "https://detail.tmall.com/item.htm?spm=a1z10.5-b-s.w4011-14234872789.180.4564295bWkLamZ&id=521216553937&rn=ce4ddb0ad73d90b885fc06b11913ca40&abbucket=6":[799,639],
-    "https://detail.tmall.com/item.htm?spm=a1z10.5-b-s.w4011-14234872789.220.4564295bWkLamZ&id=537943994423&rn=ce4ddb0ad73d90b885fc06b11913ca40&abbucket=6":[799,559],
+    "https://detail.tmall.com/item.htm?spm=a1z10.5-b-s.w4011-14234872789.121.4265295b1h1zxL&id=554435308679&rn=28a0708e293ac2b03dcb7c488bd8551b&abbucket=6":[269,159],
+    "https://detail.tmall.com/item.htm?spm=a1z10.5-b-s.w4011-14234872789.125.4265295b1h1zxL&id=531975808176&rn=28a0708e293ac2b03dcb7c488bd8551b&abbucket=6":[199,199],
+    "https://detail.tmall.com/item.htm?spm=a1z10.5-b-s.w4011-14234872789.129.4265295b1h1zxL&id=562384841109&rn=28a0708e293ac2b03dcb7c488bd8551b&abbucket=6":[256,189],
+    "https://detail.tmall.com/item.htm?spm=a1z10.5-b-s.w4011-14234872789.133.4265295b1h1zxL&id=537441187314&rn=28a0708e293ac2b03dcb7c488bd8551b&abbucket=6":[299,239],
+    "https://detail.tmall.com/item.htm?spm=a1z10.5-b-s.w4011-14234872789.137.4265295b1h1zxL&id=566873306613&rn=28a0708e293ac2b03dcb7c488bd8551b&abbucket=6":[99,99]
 }
 
 db = MySQLdb.connect("localhost", "root", "123456", "617Store", charset='utf8')
 cursor = db.cursor()
 
-commodity_id = 75
+commodity_id = 130
 
 for url,price in url_pool.items():
     r = requests.get(url)

@@ -108,7 +108,7 @@
                                         <li><a href="/list.html?class=男&key=长裤">长裤</a></li>
                                         <li><a href="/list.html?class=男&key=T恤/POLO衫">休闲T恤/POLO衫</a></li>
                                         <li><a href="/list.html?class=男&key=短裤">短裤</a></li>
-                                        <li><a href="/list.html?class=男&key=背包/帽/袜">背包/帽袜</a></li>
+                                        <li><a href="/list.html?class=男&key=背包/运动帽/运动 袜">背包/帽袜</a></li>
                                     </ul>
                                 </div>
                                 <div class="mega-column">
@@ -180,7 +180,7 @@
                                         <li><a href="/list.html?class=女&key=夹克/连帽衫">夹克/连帽衫</a></li>
                                         <li><a href="/list.html?class=女&key=长裤/紧身裤">长裤/紧身裤</a></li>
                                         <li><a href="/list.html?class=女&key=短裤">短裤</a></li>
-                                        <li><a href="/list.html?class=女&key=配件/装备">配件/装备</a></li>
+                                        <li><a href="/list.html?class=女&key=跑步袜/运动帽">配件/装备</a></li>
                                     </ul>
                                 </div>
                                 <div class="mega-column">
@@ -197,7 +197,7 @@
                             </div>
                         </div>
                     </li>
-                    <li class="menu-item menu-item-has-children has-mega-menu"><a href="/list.html?class=儿童">儿童</a>
+                    <li class="menu-item menu-item-has-children has-mega-menu"><a href="/list.html?class=童">儿童</a>
                         <div class="mega-menu">
                             <div class="mega-wrap">
                                 <div class="mega-column">
@@ -214,38 +214,38 @@
                                 <div class="mega-column">
                                     <h4 class="mega-heading">所有产品</h4>
                                     <ul class="mega-item">
-                                        <li><a href="/list.html?class=儿童&key=鞋">鞋类</a></li>
-                                        <li><a href="/list.html?class=儿童&key=外套">外套</a></li>
-                                        <li><a href="/list.html?class=儿童&key=上衣/T恤">上衣/T恤</a></li>
-                                        <li><a href="/list.html?class=儿童&key=短裤">短裤</a></li>
-                                        <li><a href="/list.html?class=儿童&key=长裤/紧身裤">长裤/紧身裤</a></li>
-                                        <li><a href="/list.html?class=儿童&key=背包/配件">背包/配件</a></li>
+                                        <li><a href="/list.html?class=童&key=鞋">鞋类</a></li>
+                                        <li><a href="/list.html?class=童&key=夹克/T恤/连帽衫">外套</a></li>
+                                        <li><a href="/list.html?class=童&key=上衣/T恤">上衣/T恤</a></li>
+                                        <li><a href="/list.html?class=童&key=短裤">短裤</a></li>
+                                        <li><a href="/list.html?class=童&key=长裤/紧身裤">长裤/紧身裤</a></li>
+                                        <li><a href="/list.html?class=童&key=包">背包/配件</a></li>
                                     </ul>
                                 </div>
                                 <div class="mega-column">
                                     <h4 class="mega-heading">休闲</h4>
                                     <ul class="mega-item">
-                                        <li><a href="/list.html?class=儿童&key=休闲鞋">休闲鞋</a></li>
-                                        <li><a href="/list.html?class=儿童&key=上衣">上衣</a></li>
-                                        <li><a href="/list.html?class=儿童&key=裤装">裤装</a></li>
-                                        <li><a href="/list.html?class=儿童&key=外套">外套</a></li>
+                                        <li><a href="/list.html?class=童&key=鞋">休闲鞋</a></li>
+                                        <li><a href="/list.html?class=童&key=上衣">上衣</a></li>
+                                        <li><a href="/list.html?class=童&key=裤">裤装</a></li>
+                                        <li><a href="/list.html?class=童&key=夹克/T恤/连帽衫">外套</a></li>
                                     </ul>
                                 </div>
                                 <div class="mega-column">
                                     <h4 class="mega-heading">运动</h4>
                                     <ul class="mega-item">
-                                        <li><a href="/list.html?class=儿童&key=跑步">跑步</a></li>
-                                        <li><a href="/list.html?class=儿童&key=健身/训练">健身/训练</a></li>
-                                        <li><a href="/list.html?class=儿童&key=篮球">篮球</a></li>
-                                        <li><a href="/list.html?class=儿童&key=足球">足球</a></li>
+                                        <li><a href="/list.html?class=童&key=跑步">跑步</a></li>
+                                        <li><a href="/list.html?class=童&key=健身/训练">健身/训练</a></li>
+                                        <li><a href="/list.html?class=童&key=篮球">篮球</a></li>
+                                        <li><a href="/list.html?class=童&key=足球">足球</a></li>
                                     </ul>
                                 </div>
                                 <div class="mega-column">
                                     <h4 class="mega-heading">年龄</h4>
                                     <ul class="mega-item">
-                                        <li><a href="/list.html">婴童(0-3岁)</a></li>
-                                        <li><a href="/list.html">幼童(4-6岁)</a></li>
-                                        <li><a href="/list.html">大童(7岁及以上)</a></li>
+                                        <li><a href="/list.html?class=婴童">婴童(0-3岁)</a></li>
+                                        <li><a href="/list.html?class=幼童">幼童(4-6岁)</a></li>
+                                        <li><a href="/list.html?class=大童">大童(7岁及以上)</a></li>
                                     </ul>
                                 </div>
                             </div>

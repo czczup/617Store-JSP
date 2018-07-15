@@ -5,3 +5,15 @@
 .color-btn {
     cursor: pointer;
 }
+
+.br-theme-fontawesome-stars .br-widget > a {
+    font-size: 20px !important;
+    color: #ffb727;
+}
+
+.br-wrapper.br-theme-fontawesome-stars {
+    margin-bottom: 20px;
+}
+.ps-shoe__content {
+    padding: 0 0 0;
+}
